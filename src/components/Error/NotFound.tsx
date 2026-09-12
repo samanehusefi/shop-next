@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { FaArrowRight, FaHome, FaSearch } from "react-icons/fa";
 
 const NotFound = () => {
@@ -29,7 +29,7 @@ const NotFound = () => {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            to="/"
+            href="/"
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-700 sm:w-auto"
           >
             <FaHome />

@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { FaHome, FaRedo } from "react-icons/fa";
 
 const ServerError = () => {
@@ -36,7 +38,7 @@ const ServerError = () => {
           </button>
 
           <Link
-            to="/"
+            href="/"
             className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-bold text-gray-700 transition hover:bg-gray-50"
           >
             <FaHome />

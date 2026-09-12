@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { FaChevronUp } from "react-icons/fa";
 
 import type { RootState } from "@/Redux/store";
+import { getImagePath } from "../../../utils/imagePath";
 
 const TopSection = () => {
   const logo = useSelector((state: RootState) => state.footer.logo);
@@ -15,7 +16,7 @@ const TopSection = () => {
           <img
             className="footer_logo"
             loading="lazy"
-            src={`/${logo.desktopSrc}`}
+            src={getImagePath(logo.desktopSrc)}
             alt={logo.alt}
             title={logo.title}
           />

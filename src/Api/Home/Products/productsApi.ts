@@ -1,10 +1,10 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const getProducts = async () => {
-  const isProduction = import.meta.env.PROD;
+  const isProduction = process.env.NODE_ENV === "production";
 
   const response = await fetch(
-    isProduction
-      ? `${import.meta.env.BASE_URL}db.json`
-      : `${import.meta.env.VITE_API_URL}/products`,
+    isProduction ? `${API_URL}/db.json` : `${API_URL}/products`,
   );
 
   if (!response.ok) {

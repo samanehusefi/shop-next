@@ -3,12 +3,11 @@
 import { useSelector } from "react-redux";
 
 import type { RootState } from "@/Redux/store";
+import { getImagePath } from "../../../utils/imagePath";
 
 interface FooterDownloadProps {
   onOpen: () => void;
 }
-
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const FooterDownload = ({ onOpen }: FooterDownloadProps) => {
   const applications = useSelector(
@@ -19,29 +18,13 @@ const FooterDownload = ({ onOpen }: FooterDownloadProps) => {
     (a, b) => Number(a.priority) - Number(b.priority),
   );
 
-  const getAssetPath = (path: string) => {
-    if (!path) return "";
-
-    if (
-      path.startsWith("http://") ||
-      path.startsWith("https://") ||
-      path.startsWith("data:")
-    ) {
-      return path;
-    }
-
-    const cleanPath = path.startsWith("/") ? path : `/${path}`;
-
-    return `${BASE_PATH}${cleanPath}`;
-  };
-
   return (
     <div className="footer-app-download">
       <div className="footer-app-r-text">
         <div className="footer-app-r-img">
           <img
             loading="lazy"
-            src={getAssetPath("/assets/application/footerlogo2.webp")}
+            src={getImagePath("/assets/application/footerlogo2.webp")}
             alt="دیجی‌کالا"
           />
         </div>
@@ -62,7 +45,7 @@ const FooterDownload = ({ onOpen }: FooterDownloadProps) => {
             >
               <img
                 loading="lazy"
-                src={getAssetPath(`/${application.src}`)}
+                src={getImagePath(application.src)}
                 alt={application.alt}
                 title={application.title}
               />
@@ -73,7 +56,7 @@ const FooterDownload = ({ onOpen }: FooterDownloadProps) => {
         <button type="button" className="footer-link-more" onClick={onOpen}>
           <img
             loading="lazy"
-            src={getAssetPath("/assets/application/More.svg")}
+            src={getImagePath("/assets/application/More.svg")}
             alt="بیشتر"
           />
         </button>

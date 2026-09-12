@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 import type { RootState } from "../../../../../Redux/store";
+import { getImagePath } from "../../../../../utils/imagePath";
 
 const Logo = () => {
   const logo = useSelector(
@@ -15,9 +16,7 @@ const Logo = () => {
     return null;
   }
 
-  const logoSrc = logo.desktopSrc.startsWith("/")
-    ? logo.desktopSrc
-    : `/${logo.desktopSrc}`;
+  const logoSrc = getImagePath(logo.desktopSrc);
 
   return (
     <Link href="/" title={logo.title} className="flex shrink-0 items-center">

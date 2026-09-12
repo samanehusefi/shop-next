@@ -1,12 +1,14 @@
 import type { IBrand } from "../../../Types/Home/IBrand";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const getBrands = async (): Promise<IBrand[]> => {
-  const isProduction = import.meta.env.PROD;
+  const isProduction = process.env.NODE_ENV === "production";
 
   const response = await fetch(
     isProduction
-      ? `${import.meta.env.BASE_URL}db.json`
-      : `${import.meta.env.VITE_API_URL}/brands`,
+      ? `${API_URL}/db.json`
+      : `${API_URL}/brands`,
   );
 
   if (!response.ok) {

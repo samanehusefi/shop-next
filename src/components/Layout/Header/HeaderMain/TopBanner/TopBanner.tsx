@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { getImagePath } from "../../../../../utils/imagePath";
+
 const TopBanner = () => {
   return (
     <div
@@ -8,7 +10,7 @@ const TopBanner = () => {
     >
       <div className="block lg:hidden">
         <Image
-          src="/assets/header/topnav.gif"
+          src={getImagePath("/assets/header/topnav.gif")}
           alt="header-top-banner"
           width={1200}
           height={80}
@@ -19,7 +21,7 @@ const TopBanner = () => {
 
       <div className="hidden lg:block">
         <Image
-          src="/assets/header/topnav.webp"
+          src={getImagePath("/assets/header/topnav.webp")}
           alt="header-top-banner"
           width={1920}
           height={80}

@@ -11,9 +11,13 @@ export const getImagePath = (path: string) => {
     return path;
   }
 
-  let cleanPath = path.startsWith("/") ? path : `/${path}`;
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
 
-  if (cleanPath.startsWith(`${BASE_PATH}/`)) {
+  if (!BASE_PATH) {
+    return cleanPath;
+  }
+
+  if (cleanPath === BASE_PATH || cleanPath.startsWith(`${BASE_PATH}/`)) {
     return cleanPath;
   }
 

@@ -1,12 +1,12 @@
 import type { ICategory } from "../../../Types/Home/ICategory";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const getCategories = async (): Promise<ICategory[]> => {
-  const isproduction = import.meta.env.PROD;
+  const isProduction = process.env.NODE_ENV === "production";
 
   const response = await fetch(
-    isproduction
-      ? `${import.meta.env.BASE_URL}db.json`
-      : `${import.meta.env.VITE_API_URL}/categories`,
+    isProduction ? `${API_URL}/db.json` : `${API_URL}/categories`,
   );
 
   if (!response.ok) {
@@ -15,5 +15,5 @@ export const getCategories = async (): Promise<ICategory[]> => {
 
   const data = await response.json();
 
-  return isproduction ? data.categories : data;
+  return isProduction ? data.categories : data;
 };
