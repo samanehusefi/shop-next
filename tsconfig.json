@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/components/Header/HeaderMain/Address"  ],
   "exclude": ["node_modules"]
 }

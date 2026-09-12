@@ -1,0 +1,86 @@
+"use client";
+
+import { useSelector } from "react-redux";
+
+import type { RootState } from "@/Redux/store";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./Slider.css";
+
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+
+const Slider = () => {
+  const slider = useSelector((state: RootState) => state.slider.slider);
+
+  if (!slider.length) {
+    return null;
+  }
+
+  return (
+    <div className="slider-container relative w-full">
+      <Swiper
+        modules={[Autoplay, Pagination, Navigation]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={{
+          nextEl: ".slider-next",
+          prevEl: ".slider-prev",
+        }}
+        loop={slider.length > 1}
+        className="slider-swiper"
+      >
+        {slider.map((item) => (
+          <SwiperSlide key={item.id}>
+            <a href={item.link} className="block h-full">
+              <picture>
+                <source
+                  media="(max-width: 1023px)"
+                  srcSet={item.imageMobileSrc}
+                />
+
+                <img
+                  loading="eager"
+                  fetchPriority="high"
+                  src={item.imageSrc}
+                  alt={item.title}
+                  className="h-full w-full object-cover"
+                />
+              </picture>
+            </a>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <div className="slider-navigation absolute bottom-6 right-6 z-10 flex items-center gap-2">
+        <button
+          type="button"
+          className="slider-next flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-gray-100"
+          aria-label="اسلاید بعدی"
+        >
+          <FaChevronRight className="text-sm text-gray-700" />
+        </button>
+
+        <button
+          type="button"
+          className="slider-prev flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-gray-100"
+          aria-label="اسلاید قبلی"
+        >
+          <FaChevronLeft className="text-sm text-gray-700" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Slider;
