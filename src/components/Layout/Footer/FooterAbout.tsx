@@ -65,7 +65,7 @@ const FooterAbout = () => {
             <img
               loading="lazy"
               className="inline-block w-full"
-              src={getImagePath(`/${certificate.image}`)}
+              src={getImagePath(certificate.image)}
               width="75"
               height="75"
               alt={certificate.title || "certificate"}

@@ -25,7 +25,7 @@ const FooterBrands = () => {
           >
             <img
               loading="lazy"
-              src={getImagePath(`/${brand.src}`)}
+              src={getImagePath(brand.src)}
               alt={brand.alt}
               title={brand.title}
             />

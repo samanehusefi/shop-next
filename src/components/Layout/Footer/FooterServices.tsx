@@ -3,6 +3,7 @@
 import { useSelector } from "react-redux";
 
 import type { RootState } from "@/Redux/store";
+import { getImagePath } from "@/utils/imagePath";
 
 const FooterServices = () => {
   const supports = useSelector(
@@ -22,7 +23,7 @@ const FooterServices = () => {
           className="footer-support-box"
         >
           <img
-            src={support.src}
+            src={getImagePath(support.src)}
             alt={support.alt}
             loading="lazy"
           />

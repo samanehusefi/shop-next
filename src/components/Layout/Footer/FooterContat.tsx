@@ -3,28 +3,11 @@
 import { useSelector } from "react-redux";
 
 import type { RootState } from "@/Redux/store";
+import { getImagePath } from "@/utils/imagePath";
 
 interface FooterContatProps {
   onOpen: () => void;
 }
-
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
-const getAssetPath = (path: string) => {
-  if (!path) return "";
-
-  if (
-    path.startsWith("http://") ||
-    path.startsWith("https://") ||
-    path.startsWith("data:")
-  ) {
-    return path;
-  }
-
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
-
-  return `${BASE_PATH}${cleanPath}`;
-};
 
 const FooterContat = ({ onOpen }: FooterContatProps) => {
   const { contact } = useSelector(
@@ -82,9 +65,7 @@ const FooterContat = ({ onOpen }: FooterContatProps) => {
   return (
     <div className="footer-contact">
       <div className="hidden lg:flex">
-        {phoneGroups.map((group) =>
-          renderPhoneType(group),
-        )}
+        {phoneGroups.map((group) => renderPhoneType(group))}
 
         <p className="mt-1 w-full md:mt-0">
           {contact.description}
@@ -96,7 +77,7 @@ const FooterContat = ({ onOpen }: FooterContatProps) => {
           <div className="footer-Quick-contact-img">
             <img
               loading="lazy"
-              src={getAssetPath("/assets/icon/support.svg")}
+              src={getImagePath("/assets/icon/support.svg")}
               alt="پشتیبانی"
             />
           </div>
@@ -128,7 +109,7 @@ const FooterContat = ({ onOpen }: FooterContatProps) => {
           <div className="footer-Quick-app-img">
             <img
               loading="lazy"
-              src={getAssetPath("/assets/logo/Logo.png")}
+              src={getImagePath("/assets/logo/Logo.png")}
               alt="دیجی‌کالا"
             />
           </div>

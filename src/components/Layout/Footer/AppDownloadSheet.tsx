@@ -3,13 +3,12 @@
 import { useSelector } from "react-redux";
 
 import type { RootState } from "@/Redux/store";
+import { getImagePath } from "@/utils/imagePath";
 
 interface AppDownloadSheetProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const AppDownloadSheet = ({
   isOpen,
@@ -22,22 +21,6 @@ const AppDownloadSheet = ({
   const sortedApplicationsMobile = [...applicationsMobile].sort(
     (a, b) => Number(a.priority) - Number(b.priority),
   );
-
-  const getAssetPath = (path: string) => {
-    if (!path) return "";
-
-    if (
-      path.startsWith("http://") ||
-      path.startsWith("https://") ||
-      path.startsWith("data:")
-    ) {
-      return path;
-    }
-
-    const cleanPath = path.startsWith("/") ? path : `/${path}`;
-
-    return `${BASE_PATH}${cleanPath}`;
-  };
 
   return (
     <>
@@ -64,7 +47,7 @@ const AppDownloadSheet = ({
             <img
               loading="lazy"
               className="h-8 w-8"
-              src={getAssetPath("/assets/icon/close.svg")}
+              src={getImagePath("/assets/icon/close.svg")}
               alt="بستن"
             />
           </button>
@@ -85,7 +68,7 @@ const AppDownloadSheet = ({
                 <img
                   loading="lazy"
                   className="w-full"
-                  src={getAssetPath(`/assets/${application.src}`)}
+                  src={getImagePath(application.src)}
                   alt={application.alt}
                   title={application.title}
                 />

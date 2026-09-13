@@ -124,7 +124,7 @@ const FooterLinks = () => {
                 >
                   <img
                     loading="lazy"
-                    src={getImagePath(`/assets/${brand.src}`)}
+                    src={getImagePath(brand.src)}
                     alt={brand.alt}
                     title={brand.title}
                   />
@@ -148,7 +148,7 @@ const FooterLinks = () => {
                 >
                   <img
                     loading="lazy"
-                    src={getImagePath(`/${item.src}`)}
+                    src={getImagePath(item.src)}
                     alt={item.alt}
                     title={item.title}
                   />
